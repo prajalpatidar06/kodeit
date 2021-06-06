@@ -12,8 +12,14 @@ def index(request):
     context = {'blogs': blog}
     return render(request,'home.html',context)
 
-def about(request):
-    return render(request,'about.html')
+def user_view(request):
+    blog = Blog.objects.all()
+    context = {'blogs': blog}
+    for blog in blogs:
+        if blog.user_id == request.user:
+            count += 1
+    context = {'blogs': blogs , 'count': count}
+    return render(request,'user_view.html' , context)
 
 def user_register(request):
     if request.method =='POST':
