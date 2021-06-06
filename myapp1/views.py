@@ -79,7 +79,8 @@ def post_blog(request):
         
         messages.success(request,'Blog content successfully posted')
         return redirect('post_blog')
-    blog = Blog.objects.all()  
+    post = Blog.objects.all()
+    blog = list(set(post.category))
     return render(request,'post_blog.html',{'blogs':blog})
 
 def blog_detail(request,id):
@@ -95,7 +96,8 @@ def delete(request,id):
 
 def edit(request,id):
     blog = Blog.objects.get(id=id)
-    post = Blog.objects.all()
+    p = Blog.objects.all()
+    post = list(set(p.category))
     editblog = Edit_Blog(instance = blog)
     if request.method =="POST":
         form = Edit_Blog(request.POST,instance=blog)
@@ -107,6 +109,5 @@ def edit(request,id):
 
 def search(request):
     query = request.GET.get('search')
-    post= Blog.objects.all()
-    blog = list(set(post.category))
+    blog= Blog.objects.all()
     return render(request,'search.html',{'blogs':blog , 'query' :query})
