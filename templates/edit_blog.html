@@ -14,7 +14,7 @@
             <select class="form-control" name="category">
                 <option value="none">ALL</option>
                 {% for post in posts %}
-                    <option value='{{post}}'>{{post}}</option>
+                    <option value='{{blog.category}}'>{{post.category}}</option>
                 {% endfor %}
             </select>
         </div>
