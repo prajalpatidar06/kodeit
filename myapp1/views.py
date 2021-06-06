@@ -13,8 +13,8 @@ def index(request):
     return render(request,'home.html',context)
 
 def user_view(request):
-    blog = Blog.objects.all()
-    context = {'blogs': blog}
+    blogs = Blog.objects.all()
+    count = 0
     for blog in blogs:
         if blog.user_id == request.user:
             count += 1
