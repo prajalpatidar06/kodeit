@@ -107,5 +107,6 @@ def edit(request,id):
 
 def search(request):
     query = request.GET.get('search')
-    blog= Blog.objects.all()
+    post= Blog.objects.all()
+    blog = list(set(post.category))
     return render(request,'search.html',{'blogs':blog , 'query' :query})
