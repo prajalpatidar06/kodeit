@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>kodeit - edit_blog</title>
+{% endblock title %}
+
+{% block body %}
+
+<div class="container my-3 px-4">
+    <form method="post" >
+        {%csrf_token%}
+        <div class="form-group">
+            <label for="exampleFormControlInput1"> Select Category</label>
+            <select class="form-control" name="category">
+                <option value="none">ALL</option>
+                {% for post in posts %}
+                    <option value='{{blog.category}}'>{{post.category}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group"></div>
+            {{edit_blog.as_p}}
+        </div>
+        <button style="margin-left:30vw; height:3rem" type="submit" class="btn btn-primary w-50">Edit</button>
+    </form>
+</div>
+
+{% endblock body %}

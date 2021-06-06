@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>kodeit - Blogging platform</title>
+    <!-- <style>
+      .wrapper{
+        max-height: 35px;
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+      .wrapper .item{
+        width:fit-content;
+      }
+      .wrapper ::-webkit-scrollbar{
+        width:0;
+      }
+    </style> -->
+{% endblock title %} 
+
+{% block body %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags}} alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+    <!-- header start -->
+    <!-- <div class="container">    
+      <div class="wrapper">
+          <a class="p-2 item" href="/">All</a>
+          <a class="p-2 item" href="/">Array</a>
+          <a class="p-2 item" href="/">String</a>
+          <a class="p-2 item" href="/">Linkedlist</a>
+          <a class="p-2 item" href="/">Recursion</a>
+          <a class="p-2 item" href="/">Backtracking</a>
+          <a class="p-2 item" href="/">Mathematics</a>
+          <a class="p-2 item" href="/">Tree</a>
+          <a class="p-2 item" href="/">Heap</a>
+          <a class="p-2 item" href="/">Sorting</a>
+          <a class="p-2 item" href="/">Stack</a>
+          <a class="p-2 item" href="/">Queue</a>  
+      </div>
+    </div> -->
+    <!-- header end -->
+    <!-- blog start -->
+    <div class="container">      
+        <div class="row mb-2 my-3">
+        {% for blog in blogs %}
+          <div class="col-md-6">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+                <h3 class="mb-0">{{blog.category}}</h3>
+                <div class="mb-1 text-muted">{{blog.date}}</div>
+                <div class="mb-1 text-danger"> posted by-> {{blog.user_id.username}}</div>
+                <p class="card-text mb-auto">{{blog.title}}</p>
+                <a href="blog_detail/{{blog.id}}" class="stretched-link btn btn-success">Continue reading</a>
+              </div>
+            </div>
+          </div>
+          {% endfor%}
+        </div>
+      </div>
+    <!-- blog end -->
+{% endblock body %}

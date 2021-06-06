@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>kodeit - Read post</title>
+{% endblock title %}
+
+
+{%block header %}
+        
+{%endblock header %}
+
+
+{% block body %}
+{% if request.user == blog.user_id %}
+<div class="container">
+    <div class="container text-right m-3">
+        <a class="btn btn-success text-light" href="/edit/{{blog.id}}">Edit</a>
+        <a class="btn btn-danger text-light" href="/delete/{{blog.id}}">Delete</a>
+    </div>
+</div>
+{% endif %}
+<div class="container my-3">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <h4 class="mb-0">posted by -> {{blog.user_id.username}}</h4>
+            <div class="mb-1 text-muted">{{blog.date}}</div>
+            <h3 class="my-4 text-primary"> {{blog.title}}</h3>
+            <a class="btn btn-success text-light" href="{{blog.url}}" target="_blank">View Question</a>
+            <h3 class="my-3">Problem Notes : </h3>
+            <p class="card-text mb-auto">{{blog.description}}</p>
+          </div>
+        </div>
+</div>
+{% endblock body %}
